@@ -1,0 +1,87 @@
+body {
+  background: rgb(134, 157, 200);
+  background: linear-gradient(
+    90deg,
+    rgba(134, 157, 200, 0.9710259103641457) 0%,
+    rgba(169, 191, 194, 1) 70%,
+    rgba(48, 96, 128, 0.9962359943977591) 100%
+  );
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 350px;
+}
+
+.left-container {
+  width: 55%;
+}
+
+.logoText {
+  font-size: 62px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: whitesmoke;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+  border: 1px solid black;
+  padding: 15px 5px 15px 10px;
+  border-radius: 7px;
+  background-color: white;
+  -webkit-box-shadow: 8px 8px 32px 3px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 8px 8px 32px 3px rgba(66, 68, 90, 1);
+  box-shadow: 8px 8px 32px 3px rgba(66, 68, 90, 1);
+}
+
+.form-container input {
+  font-size: 18px;
+  margin: 0px 5px 5px 0px;
+}
+
+.form-container label {
+  font-size: 19px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.loginLink p {
+  text-align: end;
+  font-size: 19px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  margin-right: 9px;
+}
+
+.registerButton {
+  width: 75%;
+  text-align: center;
+  color: white;
+  background: rgb(134, 157, 200);
+  background: linear-gradient(
+    90deg,
+    rgba(134, 157, 200, 0.9710259103641457) 0%,
+    rgba(169, 191, 194, 1) 70%,
+    rgba(48, 96, 128, 0.9962359943977591) 100%
+  );
+  font-size: 19px;
+  border-radius: 7px;
+}
+
+.registerButton:hover {
+  background: rgb(134, 157, 200);
+  background: linear-gradient(
+    90deg,
+    rgba(134, 157, 200, 0.9710259103641457) 0%,
+    rgba(167, 220, 227, 1) 70%,
+    rgba(48, 96, 128, 0.9962359943977591) 100%
+  );
+  cursor: pointer;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+}
