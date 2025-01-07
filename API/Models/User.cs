@@ -26,5 +26,8 @@ namespace API.Models
 
         [Required]
         public Role Role { get; set; }
+
+        [Required]
+        public string PasswordHash { get; set; }    
     }
 }

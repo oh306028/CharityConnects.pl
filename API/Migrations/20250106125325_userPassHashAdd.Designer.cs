@@ -4,6 +4,7 @@ using API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(CharityDbContext))]
-    partial class CharityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250106125325_userPassHashAdd")]
+    partial class userPassHashAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace API.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Applications", (string)null);
+                    b.ToTable("Applications");
                 });
 
             modelBuilder.Entity("API.Models.ApplicationBeneficiary", b =>
@@ -52,7 +54,7 @@ namespace API.Migrations
 
                     b.HasIndex("BeneficiaryId");
 
-                    b.ToTable("ApplicationBeneficiaries", (string)null);
+                    b.ToTable("ApplicationBeneficiaries");
                 });
 
             modelBuilder.Entity("API.Models.CharityProject", b =>
@@ -85,7 +87,7 @@ namespace API.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("CharityProjects", (string)null);
+                    b.ToTable("CharityProjects");
                 });
 
             modelBuilder.Entity("API.Models.Document", b =>
@@ -108,7 +110,7 @@ namespace API.Migrations
 
                     b.HasIndex("ApplicationId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("API.Models.Organization", b =>
@@ -132,7 +134,7 @@ namespace API.Migrations
                     b.HasIndex("AdminId")
                         .IsUnique();
 
-                    b.ToTable("Organizations", (string)null);
+                    b.ToTable("Organizations");
                 });
 
             modelBuilder.Entity("API.Models.ProjectBeneficiary", b =>
@@ -147,7 +149,7 @@ namespace API.Migrations
 
                     b.HasIndex("BeneficiaryId");
 
-                    b.ToTable("ProjectBeneficiaries", (string)null);
+                    b.ToTable("ProjectBeneficiaries");
                 });
 
             modelBuilder.Entity("API.Models.ProjectDonor", b =>
@@ -162,7 +164,7 @@ namespace API.Migrations
 
                     b.HasIndex("DonorId");
 
-                    b.ToTable("ProjectDonors", (string)null);
+                    b.ToTable("ProjectDonors");
                 });
 
             modelBuilder.Entity("API.Models.ProjectRequirement", b =>
@@ -184,7 +186,7 @@ namespace API.Migrations
 
                     b.HasIndex("CharityProjectId");
 
-                    b.ToTable("ProjectRequirements", (string)null);
+                    b.ToTable("ProjectRequirements");
                 });
 
             modelBuilder.Entity("API.Models.User", b =>
@@ -225,7 +227,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasDiscriminator<int>("Role");
                 });
@@ -233,16 +235,22 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Admin", b =>
                 {
                     b.HasBaseType("API.Models.User");
+
+                    b.HasDiscriminator().HasValue(0);
                 });
 
             modelBuilder.Entity("API.Models.Beneficiary", b =>
                 {
                     b.HasBaseType("API.Models.User");
+
+                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("API.Models.Donor", b =>
                 {
                     b.HasBaseType("API.Models.User");
+
+                    b.HasDiscriminator().HasValue(2);
                 });
 
             modelBuilder.Entity("API.Models.Employee", b =>

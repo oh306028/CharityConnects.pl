@@ -1,5 +1,6 @@
 ﻿using API.Dtos;
 using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,10 +29,20 @@ namespace API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginUserDto dto)    
+        public async Task<ActionResult<string>> Login([FromBody] LoginUserDto dto)    
         {
-            await _userService.LoginUserAsync(dto);
-            return Ok();   
+            var jwtToken = await _userService.LoginUserAsync(dto);
+            return Ok(jwtToken);   
+        }
+
+
+        [HttpGet("data")]
+        [Authorize]
+        public  ActionResult<UserDto> GetUserData()
+        {
+            var result = _userService.GetUserData();
+            return Ok(result);
+
         }
 
     }

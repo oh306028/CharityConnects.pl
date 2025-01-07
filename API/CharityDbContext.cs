@@ -120,10 +120,6 @@ namespace API
             modelBuilder.Entity<Application>()
                 .HasOne(e => e.Employee)
                 .WithMany(a => a.Applications);
-
-
-
-
         }
 
     }
