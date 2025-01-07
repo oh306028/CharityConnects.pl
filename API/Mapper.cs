@@ -23,6 +23,10 @@ namespace API
 
             CreateMap<User, UserDto>();
 
+            CreateMap<Employee, EmployeeDto>();
+
+
+
         }
     }
 }
