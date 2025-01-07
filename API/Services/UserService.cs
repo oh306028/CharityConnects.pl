@@ -94,6 +94,19 @@ namespace API.Services
                     };
 
                     break;
+                case "Admin":
+                    role = Role.Admin;
+
+                    newUser = new Admin()   
+                    {
+                        Email = dto.Email,
+                        FirstName = dto.FirstName,
+                        LastName = dto.LastName,
+                        Age = dto.Age,
+                        DateOfBirth = dto.DateOfBirth
+                    };
+
+                    break;
                 default:
                     throw new Exception("Invalid role");
             }
