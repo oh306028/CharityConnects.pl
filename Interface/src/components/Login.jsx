@@ -10,26 +10,32 @@ const Login = () => {
     password: password,
   };
 
+  const [error, setError] = useState({});
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(
-        "https://localhost:7292/api/accounts/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginData),
+    const areInputsValid = validateInputs();
+
+    if (areInputsValid) {
+      try {
+        const response = await fetch(
+          "https://localhost:7292/api/accounts/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+          }
+        );
+        if (response.ok) {
+          localStorage.setItem("jwtToken", await response.text());
+          navigate("/Home");
         }
-      );
-      if (response.ok) {
-        localStorage.setItem("jwtToken", await response.text());
-        navigate("/Home");
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -41,6 +47,32 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const validateInputs = () => {
+    let isValid = true;
+    const newError = {
+      email: "",
+      password: "",
+    };
+
+    if (email == "") {
+      newError.email = "Email nie moze byc pusty!";
+      isValid = false;
+    }
+
+    if (!email.includes("@")) {
+      newError.email = "Email musi byc mailem!";
+      isValid = false;
+    }
+
+    if (password == "") {
+      newError.password = "Haslo nie moze byc puste!";
+      isValid = false;
+    }
+
+    setError(newError);
+    return isValid;
+  };
+
   return (
     <>
       <div className="container">
@@ -50,19 +82,23 @@ const Login = () => {
         <div className="right-container">
           <div className="form-container">
             <form>
-              <div>
+              <div className="inputGroup">
                 <input
                   onChange={handleEmailChange}
                   type="text"
                   placeholder="Email . . ."
                 ></input>
+                {error.email && <span className="error">{error.email}</span>}
               </div>
-              <div>
+              <div className="inputGroup">
                 <input
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder="Hasło . . ."
                 ></input>
+                {error.password && (
+                  <span className="error">{error.password}</span>
+                )}
               </div>
               <div>
                 <NavLink className="loginLink" to="/register">
