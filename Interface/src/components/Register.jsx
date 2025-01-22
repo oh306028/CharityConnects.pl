@@ -7,9 +7,10 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(10);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("Donor");
   const [selectedDate, setSelectedDate] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState({});
 
   const newUser = {
     firstName: firstName,
@@ -21,26 +22,74 @@ const Register = () => {
     dateOfBirth: selectedDate,
   };
 
+  const validateInputs = () => {
+    let isValid = true;
+    const newError = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      dateOfBirth: "",
+    };
+
+    if (firstName === "") {
+      newError.firstName = "Imie nie moze byc puste!";
+      isValid = false;
+    }
+
+    if (lastName === "") {
+      newError.lastName = "Nazwisko nie moze byc puste!";
+      isValid = false;
+    }
+
+    if (email === "") {
+      newError.email = "Email nie moze byc pusty!";
+      isValid = false;
+    }
+
+    if (!email.includes("@")) {
+      newError.email = "Email musi byc mailem!";
+      isValid = false;
+    }
+
+    if (selectedDate === "") {
+      error.dateOfBirth = "Data urodzenia nie może być pusta!";
+      isValid = false;
+    }
+
+    if (password === "") {
+      newError.password = "Haslo nie moze byc puste!";
+      isValid = false;
+    }
+
+    setError(newError);
+    return isValid;
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(
-        "https://localhost:7292/api/accounts/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
+    const areInputsValid = validateInputs();
+
+    if (areInputsValid) {
+      try {
+        const response = await fetch(
+          "https://localhost:7292/api/accounts/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          }
+        );
+        if (response.ok) {
+          alert("Registration successfull! Please log in.");
+          navigate("/login");
         }
-      );
-      if (response.ok) {
-        alert("Registration successful! Please log in.");
-        navigate("/login");
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -77,29 +126,47 @@ const Register = () => {
         <div className="right-container">
           <div className="form-container">
             <form>
-              <div>
-                <input
-                  onChange={handleFirstNameChange}
-                  type="text"
-                  placeholder="Imię . . ."
-                ></input>
-                <input
-                  onChange={handleLastNameChange}
-                  type="text"
-                  placeholder="Nazwisko . . ."
-                ></input>
+              <div className="row">
+                <div className="inputGroup">
+                  <input
+                    onChange={handleFirstNameChange}
+                    type="text"
+                    placeholder="Imię . . ."
+                  ></input>
+                  {error.firstName && (
+                    <span className="error">{error.firstName}</span>
+                  )}
+                </div>
+                <div className="inputGroup">
+                  <input
+                    onChange={handleLastNameChange}
+                    type="text"
+                    placeholder="Nazwisko . . ."
+                  ></input>
+                  {error.lastName && (
+                    <span className="error">{error.lastName}</span>
+                  )}
+                </div>
               </div>
-              <div>
-                <input
-                  onChange={handleEmailChange}
-                  type="text"
-                  placeholder="Email . . ."
-                ></input>
-                <input
-                  onChange={handlePasswordChange}
-                  type="password"
-                  placeholder="Hasło . . ."
-                ></input>
+              <div className="row">
+                <div className="inputGroup">
+                  <input
+                    onChange={handleEmailChange}
+                    type="text"
+                    placeholder="Email . . ."
+                  ></input>
+                  {error.email && <span className="error">{error.email}</span>}
+                </div>
+                <div className="inputGroup">
+                  <input
+                    onChange={handlePasswordChange}
+                    type="password"
+                    placeholder="Hasło . . ."
+                  ></input>
+                  {error.password && (
+                    <span className="error">{error.password}</span>
+                  )}
+                </div>
               </div>
               <div>
                 <label htmlFor="date">Data urodzenia: </label>
@@ -109,6 +176,9 @@ const Register = () => {
                   type="date"
                   value={selectedDate}
                 ></input>
+                {error.dateOfBirth && (
+                  <span className="error">{error.dateOfBirth}</span>
+                )}
               </div>
 
               <div>
