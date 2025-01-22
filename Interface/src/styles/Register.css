@@ -19,6 +19,20 @@ body {
   width: 55%;
 }
 
+.row {
+  display: flex;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
 .logoText {
   font-size: 62px;
   font-family: Georgia, "Times New Roman", Times, serif;
