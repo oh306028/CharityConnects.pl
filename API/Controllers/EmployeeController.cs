@@ -1,5 +1,6 @@
 ﻿using API.Dtos;
 using API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -17,6 +18,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<OrganizationEmployeeDto>> GetEmployees()     
         {
             var result = await _employeeService.GetEmployeesByOrganization();
