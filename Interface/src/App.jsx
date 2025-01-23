@@ -5,6 +5,11 @@ import Login from "./components/Login.jsx";
 import Home from "./components/Home.jsx";
 import Projects from "./components/Projects.jsx";
 import AboutUs from "./components/AboutUs.jsx";
+import OrganizationInfo from "./components/OrganizationInfo.jsx";
+import RegisterAdmin from "./components/RegisterAdmin.jsx";
+import CreateOrganization from "./components/CreateOrganization.jsx";
+import EmployeePage from "./components/EmlpoyeePage.jsx";
+import CreateProject from "./components/CreateProject.jsx";
 
 function App() {
   return (
@@ -15,6 +20,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/organizations" element={<OrganizationInfo />} />
+        <Route path="register/admin" element={<RegisterAdmin />} />
+        <Route path="/register/organization" element={<CreateOrganization />} />
+        <Route path="/employee/manage" element={<EmployeePage />} />
+        <Route path="employee/manage/create" element={<CreateProject />} />
       </Routes>
     </>
   );
