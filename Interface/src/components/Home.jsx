@@ -3,6 +3,7 @@ import AdminPage from "./AdminPage.jsx";
 import { useEffect, useState } from "react";
 import useAuth from "../useAuth.jsx";
 import { createContext } from "react";
+import EmployeePage from "./EmlpoyeePage.jsx";
 
 export const UserContext = createContext(null);
 
@@ -38,10 +39,15 @@ const Home = () => {
     fetchData();
   }, [token]);
 
+  if (!userData) {
+    return <p>Ładowanie...</p>;
+  }
+
   return (
     <>
       <UserContext.Provider value={{ userData }}>
         {userData.role === 0 && <AdminPage />}
+        {userData.role === 1 && <EmployeePage />}
         {(userData.role === 2 || userData.role === 3) && <Projects />}
       </UserContext.Provider>
     </>

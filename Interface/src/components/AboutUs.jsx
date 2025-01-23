@@ -1,6 +1,10 @@
 const AboutUs = () => {
   return (
     <>
+      <div>
+        <a href="/login">Pracownicy</a>
+        <a href="/organizations">Organizacje</a>
+      </div>
       <div
         style={{
           textAlign: "center",
