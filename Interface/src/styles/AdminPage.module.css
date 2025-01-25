@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  width: 100vw;
+}
+
+.option {
+  font-size: 22px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgb(255, 255, 255);
+}
+
+.option:hover {
+  color: azure;
+  cursor: pointer;
+}
+.menuOptions {
+  margin-top: 200px;
+  list-style: none;
+}
+
+.manageMenu {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  align-items: center;
+}
+
+.employeesList {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  background-color: white;
+  height: 100vh;
+}
+
+.employeesList h2 {
+  text-align: center;
+}
+
+.employees {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: left;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 40px;
+}
+
+.employees li,
+h1 {
+  margin: 0;
+  padding: 0;
+}

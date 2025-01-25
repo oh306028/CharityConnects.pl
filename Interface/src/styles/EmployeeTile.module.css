@@ -1,0 +1,28 @@
+.deleteButton {
+  font-size: 17px;
+  width: 60%;
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.deleteButton:hover {
+  background-color: rgb(218, 18, 18);
+  transition: ease 0.35s;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 6px;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.employeeName {
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+}
