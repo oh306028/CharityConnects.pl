@@ -43,9 +43,15 @@
   flex-wrap: wrap;
   list-style: none;
   align-items: left;
-  justify-content: space-between;
+  gap: 5px;
   margin: 0;
   padding: 10px 40px;
+  margin-left: 60px;
+}
+
+.employees li {
+  min-width: 250px;
+  height: 125px;
 }
 
 .employees li,
