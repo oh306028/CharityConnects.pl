@@ -24,5 +24,15 @@ namespace API.Controllers
             var result = await _employeeService.GetEmployeesByOrganization();
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> DeleteEmployee([FromRoute] int id)
+        {
+           await _employeeService.DeleteEmployeeById(id);
+            return Ok();
+        }
+
+            
     }
 }

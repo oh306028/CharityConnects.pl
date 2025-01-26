@@ -8,6 +8,7 @@ namespace API.Services
     public interface IEmployeeService
     {
         Task<OrganizationEmployeeDto> GetEmployeesByOrganization();
+        Task DeleteEmployeeById(int id);
     }
 
     public class EmployeeService : IEmployeeService
@@ -41,11 +42,22 @@ namespace API.Services
             var result = new OrganizationEmployeeDto()
             {
                 Employees = mappedEmployees,
-                OrganizationName = organization.Name
+                OrganizationName = organization.Name,
+                OrganizationId = organization.Id
             };
 
             return result;
 
+        }
+
+        public async Task DeleteEmployeeById(int id)
+        {
+            var employeeToRemove = _dbContext.Employees.FirstOrDefault(i => i.Id == id);
+            if (employeeToRemove is null)
+                throw new NotFoundException("Employee not found");
+
+            _dbContext.Employees.Remove(employeeToRemove);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
