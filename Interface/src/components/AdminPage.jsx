@@ -4,6 +4,7 @@ import CreateOrganization from "./CreateOrganization";
 import styles from "../styles/AdminPage.module.css";
 import useAuth from "../useAuth.jsx";
 import EmployeeTile from "./EmployeeTile.jsx";
+import RegisterEmployee from "./RegisterEmployee.jsx";
 
 const AdminPage = () => {
   const { userData } = useContext(UserContext);
@@ -11,26 +12,33 @@ const AdminPage = () => {
   const [employees, setEmployees] = useState([]);
   const [organizationData, setOrganizationData] = useState({});
   const token = useAuth();
+  const [isRegisterEmployeeClicked, setIsRegisterEmployeeClicked] =
+    useState(false);
 
   const handleCreateOrgToggle = () => {
     setIsCreateOrgClicked(!isCreateOrgClicked);
   };
 
+  const handleRegisterEmployeeToggle = () => {
+    setIsRegisterEmployeeClicked(!isRegisterEmployeeClicked);
+  };
+
+  const getEmployees = async () => {
+    try {
+      const response = await fetch("https://localhost:7292/api/employees", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `bearer ${token}`,
+        },
+      });
+      const result = await response.json();
+      setOrganizationData(result);
+      setEmployees(result.employees);
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    const getEmployees = async () => {
-      try {
-        const response = await fetch("https://localhost:7292/api/employees", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `bearer ${token}`,
-          },
-        });
-        const result = await response.json();
-        setOrganizationData(result);
-        setEmployees(result.employees);
-      } catch (error) {}
-    };
     getEmployees();
   }, [token]);
 
@@ -52,7 +60,18 @@ const AdminPage = () => {
               )}
             </li>
             <li>
-              <p className={styles.option}>Zarejestruj pracownika</p>
+              <p
+                className={styles.option}
+                onClick={handleRegisterEmployeeToggle}
+              >
+                Zarejestruj pracownika
+              </p>
+              {isRegisterEmployeeClicked && (
+                <RegisterEmployee
+                  organizationId={organizationData.organizationId}
+                  fetchEmployees={getEmployees}
+                />
+              )}
             </li>
           </ul>
         </div>
@@ -64,9 +83,12 @@ const AdminPage = () => {
             {employees.map((emp) => (
               <li key={emp.id}>
                 <EmployeeTile
+                  id={emp.id}
                   firstName={emp.firstName}
                   lastName={emp.lastName}
                   email={emp.email}
+                  fetchEmployees={getEmployees}
+                  token={token}
                 />
               </li>
             ))}
