@@ -4,5 +4,6 @@
     {
         public IEnumerable<EmployeeDto> Employees { get; set; } = new List<EmployeeDto>();
         public string OrganizationName { get; set; }
+        public int OrganizationId { get; set; } 
     }
 }
