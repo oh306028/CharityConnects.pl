@@ -1,7 +1,10 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 7px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 .container {
@@ -39,11 +42,7 @@ textarea {
 }
 
 .name {
-  width: 100%;
-}
-
-.name input {
-  width: 99.4%;
+  margin-bottom: 2px;
 }
 
 .description {
@@ -51,8 +50,8 @@ textarea {
 }
 
 .description textarea {
-  max-width: 100%;
-  min-width: 100%;
+  max-width: 340px;
+  min-width: 340px;
   max-height: 150px;
   min-height: 150px;
 }
