@@ -4,6 +4,7 @@ using API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(CharityDbContext))]
-    partial class CharityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250128094838_charityIdTOApplicationAddedDeletdProjId")]
+    partial class charityIdTOApplicationAddedDeletdProjId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +45,7 @@ namespace API.Migrations
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsAccepted")
+                    b.Property<bool?>("IsAccepted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -252,7 +254,7 @@ namespace API.Migrations
                         .IsRequired();
 
                     b.HasOne("API.Models.CharityProject", "CharityProject")
-                        .WithMany("Applications")
+                        .WithMany()
                         .HasForeignKey("CharityProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -352,8 +354,6 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.CharityProject", b =>
                 {
-                    b.Navigation("Applications");
-
                     b.Navigation("Beneficiaries");
 
                     b.Navigation("Donors");

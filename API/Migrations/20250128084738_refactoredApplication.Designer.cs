@@ -4,6 +4,7 @@ using API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(CharityDbContext))]
-    partial class CharityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250128084738_refactoredApplication")]
+    partial class refactoredApplication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +32,6 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BeneficiaryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharityProjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -43,18 +39,29 @@ namespace API.Migrations
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsAccepted")
+                    b.Property<bool?>("IsAccepted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BeneficiaryId");
-
-                    b.HasIndex("CharityProjectId");
-
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Applications");
+                });
+
+            modelBuilder.Entity("API.Models.ApplicationBeneficiary", b =>
+                {
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BeneficiaryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationId", "BeneficiaryId");
+
+                    b.HasIndex("BeneficiaryId");
+
+                    b.ToTable("ApplicationBeneficiaries");
                 });
 
             modelBuilder.Entity("API.Models.CharityProject", b =>
@@ -245,27 +252,30 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Application", b =>
                 {
-                    b.HasOne("API.Models.Beneficiary", "Beneficiary")
-                        .WithMany("Applications")
-                        .HasForeignKey("BeneficiaryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.CharityProject", "CharityProject")
-                        .WithMany("Applications")
-                        .HasForeignKey("CharityProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("API.Models.Employee", "Employee")
                         .WithMany("Applications")
                         .HasForeignKey("EmployeeId");
 
-                    b.Navigation("Beneficiary");
-
-                    b.Navigation("CharityProject");
-
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("API.Models.ApplicationBeneficiary", b =>
+                {
+                    b.HasOne("API.Models.Application", "Application")
+                        .WithMany("ApplicationBeneficiary")
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Beneficiary", "Beneficiary")
+                        .WithMany("ApplicationBeneficiary")
+                        .HasForeignKey("BeneficiaryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Application");
+
+                    b.Navigation("Beneficiary");
                 });
 
             modelBuilder.Entity("API.Models.CharityProject", b =>
@@ -350,10 +360,13 @@ namespace API.Migrations
                     b.Navigation("Organization");
                 });
 
+            modelBuilder.Entity("API.Models.Application", b =>
+                {
+                    b.Navigation("ApplicationBeneficiary");
+                });
+
             modelBuilder.Entity("API.Models.CharityProject", b =>
                 {
-                    b.Navigation("Applications");
-
                     b.Navigation("Beneficiaries");
 
                     b.Navigation("Donors");
@@ -374,7 +387,7 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Beneficiary", b =>
                 {
-                    b.Navigation("Applications");
+                    b.Navigation("ApplicationBeneficiary");
 
                     b.Navigation("Projects");
                 });
