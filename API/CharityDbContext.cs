@@ -11,10 +11,8 @@ namespace API
 
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Application> Applications { get; set; }
-        public DbSet<ApplicationBeneficiary> ApplicationBeneficiaries { get; set; }
         public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<CharityProject> CharityProjects { get; set; }
-        public DbSet<Document> Documents { get; set; }
         public DbSet<Donor> Donors { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Organization> Organizations { get; set; }
@@ -35,22 +33,6 @@ namespace API
                 .HasValue<Donor>(Role.Donor);
 
 
-            modelBuilder.Entity<ApplicationBeneficiary>()
-                .HasKey(ab => new { ab.ApplicationId, ab.BeneficiaryId });
-
-            modelBuilder.Entity<ApplicationBeneficiary>()
-                 .HasOne(ab => ab.Application)
-                 .WithMany(a => a.ApplicationBeneficiary)
-                 .HasForeignKey(ab => ab.ApplicationId)
-                 .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<ApplicationBeneficiary>()
-                .HasOne(ab => ab.Beneficiary)
-                .WithMany(b => b.ApplicationBeneficiary)
-                .HasForeignKey(ab => ab.BeneficiaryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
 
             modelBuilder.Entity<ProjectBeneficiary>()
                 .HasKey(pb => new { pb.CharityProjectId, pb.BeneficiaryId });
@@ -67,7 +49,10 @@ namespace API
                 .HasForeignKey(pb => pb.BeneficiaryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
+            modelBuilder.Entity<Beneficiary>()
+                .HasMany(a => a.Applications)
+                .WithOne(b => b.Beneficiary)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<ProjectDonor>()
                 .HasKey(pd => new { pd.CharityProjectId, pd.DonorId });
@@ -112,10 +97,6 @@ namespace API
                 .HasOne(e => e.Employee)
                 .WithMany(p => p.CreatedProjects);
 
-
-            modelBuilder.Entity<Application>()
-                .HasMany(d => d.Documents)
-                .WithOne(a => a.Application);
 
             modelBuilder.Entity<Application>()
                 .HasOne(e => e.Employee)
