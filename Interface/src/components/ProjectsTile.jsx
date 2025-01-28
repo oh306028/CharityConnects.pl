@@ -41,7 +41,9 @@ const ProjectsTile = ({ project }) => {
 
         <p className={styles.description}>{project.description}</p>
         <p className={styles.supportedBy}>
-          Wspierany przez: {project.beneficiaries.length} darczyńców
+          Wspierany przez: {project.donors.length} darczyńców
+          <br></br>
+          Pomoc otrzymują: {project.beneficiaries.length} beneficjentów
         </p>
         {user.userData.role === 3 && (
           <button onClick={handleApplicationClick}>Aplikuj</button>

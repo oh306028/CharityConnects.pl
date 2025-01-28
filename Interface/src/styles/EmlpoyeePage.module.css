@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 40%;
+}
+
+.leftContainer section {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.button {
+  text-decoration: none;
+  color: inherit;
+}
+
+.rightContainer {
+  margin-top: 15px;
+}
