@@ -8,7 +8,7 @@ const Projects = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://localhost:7292/api/projects", {
+      const response = await fetch("https://localhost:7292/api/projects/all", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -19,7 +19,7 @@ const Projects = () => {
       setProjects(result);
     };
     fetchData();
-    console.log(projects);
+    //console.log(projects);
   }, []);
 
   return (

@@ -1,12 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "./Home";
 import styles from "../styles/ProjectsTile.module.css";
+import ApplicateForProjectTile from "./ApplicateForProjectTile";
 
 const ProjectsTile = ({ project }) => {
   const user = useContext(UserContext);
+  const [isApplicationClicked, setIsApplicationClicked] = useState(false);
 
   const dateTime = new Date(project.endDate);
   const date = dateTime.toLocaleDateString("pl-PL");
+
+  const handleApplicationClick = () => {
+    setIsApplicationClicked(!isApplicationClicked);
+  };
+
   return (
     <>
       <div className={styles.tile}>
@@ -36,8 +43,18 @@ const ProjectsTile = ({ project }) => {
         <p className={styles.supportedBy}>
           Wspierany przez: {project.beneficiaries.length} darczyńców
         </p>
-        {user.userData.role === 3 && <button>Aplikuj</button>}
+        {user.userData.role === 3 && (
+          <button onClick={handleApplicationClick}>Aplikuj</button>
+        )}
         {user.userData.role === 2 && <button>Wspieraj</button>}
+
+        {isApplicationClicked && (
+          <ApplicateForProjectTile
+            projectId={project.id}
+            userId={user.userData.id}
+            applications={project.applications}
+          />
+        )}
       </div>
     </>
   );
