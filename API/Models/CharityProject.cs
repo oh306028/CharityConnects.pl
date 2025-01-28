@@ -5,6 +5,7 @@ namespace API.Models
     public class CharityProject
     {
         public int Id { get; set; }
+    
 
         [Required]
         [MaxLength(50)]
