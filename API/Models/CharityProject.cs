@@ -27,5 +27,10 @@ namespace API.Models
         public virtual List<ProjectBeneficiary> Beneficiaries { get; set; } = new List<ProjectBeneficiary>();            
         public virtual List<ProjectRequirement> Requirements { get; set; } = new List<ProjectRequirement>();
 
+
+        //new
+        public virtual List<Application> Applications { get; set; } = new List<Application>();
+
+
     }
 }
