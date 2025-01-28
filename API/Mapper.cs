@@ -12,6 +12,7 @@ namespace API
                 .ForMember(a => a.Name, otp => otp.MapFrom(src => src.Requirement));
 
             CreateMap<Beneficiary, BeneficiaryDto>();
+            CreateMap<Application, ApplicationDto>();
 
             CreateMap<Donor, DonorDto>();
 

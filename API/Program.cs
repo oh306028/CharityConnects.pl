@@ -38,6 +38,7 @@ namespace API
             builder.Services.AddScoped<ICharityProjectService, CharityProjectService>();
             builder.Services.AddScoped<IUserContextService, UserContextService>();
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<IApplicationService, ApplicationService>();  
 
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

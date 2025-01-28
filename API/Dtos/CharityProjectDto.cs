@@ -1,6 +1,4 @@
-﻿using API.Models;
-
-namespace API.Dtos
+﻿namespace API.Dtos
 {
     public class CharityProjectDto
     {
@@ -14,7 +12,11 @@ namespace API.Dtos
 
         public List<ProjectRequirementDto> Requirements { get; set; } = new List<ProjectRequirementDto>();
         public List<BeneficiaryDto> Beneficiaries { get; set; } = new List<BeneficiaryDto>();
-        public List<DonorDto> Donors { get; set; } = new List<DonorDto>();     
+        public List<DonorDto> Donors { get; set; } = new List<DonorDto>();
+
+
+        //new
+        public List<ApplicationDto> Applications { get; set; } = new List<ApplicationDto>();
 
 
     }
