@@ -44,7 +44,7 @@ namespace API.Controllers
             return Created($"api/posts/{postId}", null);
         }
 
-        [HttpPost("{projectId}")]
+        [HttpPost("{projectId}/accept")]
         [Authorize(Roles = "Employee")]
         public async Task<ActionResult> SupportCharityProject([FromRoute]int projectId,[FromBody] int beneficiaryId) 
         {

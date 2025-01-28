@@ -10,6 +10,7 @@ namespace API.Services
     {
         Task Apply(int projectId, IFormFile file);
         Task<IEnumerable<ApplicationDto>> GetApplications(int projectId);
+        Task Deny(int projectId);
     }
 
     public class ApplicationService : IApplicationService
@@ -61,6 +62,16 @@ namespace API.Services
             _dbContext.Applications.Add(application);
             await _dbContext.SaveChangesAsync();
 
+        }
+
+        public async Task Deny(int projectId)
+        {
+            var applicationToDeny = _dbContext.Applications.FirstOrDefault(i => i.CharityProjectId == projectId);
+            if (applicationToDeny is null)
+                throw new NotFoundException("Application not found");
+
+            _dbContext.Applications.Remove(applicationToDeny);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<ApplicationDto>> GetApplications(int projectId)

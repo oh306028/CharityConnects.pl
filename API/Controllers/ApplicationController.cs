@@ -32,7 +32,14 @@ namespace API.Controllers
             var result = await _applicationService.GetApplications(projectId);
             return Ok(result);
         }
-            
+
+        [HttpDelete("{projectId}/deny")]
+        [Authorize(Roles = "Employee")]
+        public async Task<ActionResult> DenyProjectApply([FromRoute] int projectId)  
+        {
+            await _applicationService.Deny(projectId);
+            return Ok();
+        }
 
     }
 }
