@@ -19,14 +19,22 @@ namespace API.Controllers
             _charityProjectService = charityProjectService; 
         }
 
-
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<CharityProjectDto>>> GetAllProjects()
         {   
 
             var result = await _charityProjectService.GetAllProjectsAsync();
             return Ok(result);
         }
+
+        [Authorize(Roles = "Employee")]
+        [HttpGet("organization")]
+        public async Task<ActionResult<IEnumerable<CharityProjectDto>>> GetOrganizationProjects()   
+        {
+            var result = await _charityProjectService.GetOrganizationProjectsAsync();   
+            return Ok(result);
+        }
+
 
         [HttpPost]
         [Authorize(Roles = "Employee")]
@@ -36,6 +44,13 @@ namespace API.Controllers
             return Created($"api/posts/{postId}", null);
         }
 
+        [HttpPost("{projectId}")]
+        [Authorize(Roles = "Employee")]
+        public async Task<ActionResult> SupportCharityProject([FromRoute]int projectId,[FromBody] int beneficiaryId) 
+        {
+            await _charityProjectService.Support(projectId, beneficiaryId);
+            return Ok();
+        }
 
 
 
