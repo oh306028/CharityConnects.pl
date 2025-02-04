@@ -52,6 +52,14 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpPost("{projectId}/support")]
+        [Authorize(Roles = "Donor")]
+        public async Task<ActionResult> ApplyForSupport([FromRoute]int projectId)
+        {
+            await _charityProjectService.ApplyForSupport(projectId);
+            return Ok();
+        }
+
 
 
     }

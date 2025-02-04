@@ -13,6 +13,7 @@ namespace API.Services
         Task<int> CreateCharityProjectAsync(CreateProjectDto dto);
         Task Support(int projectId, int beneficiaryId);
         Task<IEnumerable<CharityProjectDto>> GetOrganizationProjectsAsync();
+        Task ApplyForSupport(int projectId);
     }
 
     public class CharityProjectService : ICharityProjectService
@@ -67,6 +68,25 @@ namespace API.Services
 
             var result = _mapper.Map<IEnumerable<CharityProjectDto>>(projects);
             return result;
+        }
+
+        public async Task ApplyForSupport(int projectId)
+        {
+            var project = await _dbContext.CharityProjects  
+                .Include(d => d.Donors)
+                .FirstOrDefaultAsync(i => i.Id == projectId);
+
+            if (project is null)
+                throw new NotFoundException("Project not found");
+
+            var applyingDonor = await _dbContext.Donors.FirstOrDefaultAsync(i => i.Id == _userContextService.UserId);
+            if (applyingDonor is null)
+                throw new NotFoundException("Donor not found");
+
+            project.Donors.Add(new ProjectDonor() { Donor = applyingDonor, CharityProject = project });
+            await _dbContext.SaveChangesAsync();
+
+
         }
 
         public async Task<int> CreateCharityProjectAsync(CreateProjectDto dto)
