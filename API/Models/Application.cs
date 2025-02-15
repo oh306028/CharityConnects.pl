@@ -15,9 +15,10 @@ namespace API.Models
         public virtual Employee? Employee { get; set; }
 
         public virtual Beneficiary Beneficiary { get; set; }
-        public int BeneficiaryId { get; set; }  
+        public int BeneficiaryId { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+        public string FileName { get; set; } 
+        public string ContentType { get; set; } 
+        public byte[] FileData { get; set; }
     }
 }
