@@ -1,10 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./Home";
+import useAuth from "../useAuth.jsx";
 import styles from "../styles/ProjectsTile.module.css";
 import ApplicateForProjectTile from "./ApplicateForProjectTile";
 
-const ProjectsTile = ({ project }) => {
+const ProjectsTile = ({ project, getProjects }) => {
+  const token = useAuth();
   const user = useContext(UserContext);
+  const [isAlreadySupporting, setIsAlreadySupporting] = useState(false);
   const [isApplicationClicked, setIsApplicationClicked] = useState(false);
 
   const dateTime = new Date(project.endDate);
@@ -12,6 +15,37 @@ const ProjectsTile = ({ project }) => {
 
   const handleApplicationClick = () => {
     setIsApplicationClicked(!isApplicationClicked);
+  };
+
+  useEffect(() => {
+    const isSupporting = project.donors.some(
+      (donor) => donor.id === user.userData.id
+    );
+    setIsAlreadySupporting(isSupporting);
+  });
+
+  const handleSupportClick = async (projectId) => {
+    if (isAlreadySupporting) {
+      alert("Wspierasz juz ten post. Dziekujemy!");
+    }
+    try {
+      const response = await fetch(
+        `https://localhost:7292/api/projects/${projectId}/support`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        getProjects();
+        console.log("Wspierasz!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -48,7 +82,11 @@ const ProjectsTile = ({ project }) => {
         {user.userData.role === 3 && (
           <button onClick={handleApplicationClick}>Aplikuj</button>
         )}
-        {user.userData.role === 2 && <button>Wspieraj</button>}
+        {user.userData.role === 2 && (
+          <button onClick={() => handleSupportClick(project.id)}>
+            {isAlreadySupporting != true ? "Wspieraj" : "Wspierasz"}
+          </button>
+        )}
 
         {isApplicationClicked && (
           <ApplicateForProjectTile
