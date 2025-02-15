@@ -16,6 +16,10 @@ const EmployeeTile = (props) => {
       if (response.ok) {
         props.fetchEmployees();
       }
+
+      if (response.status == 500) {
+        alert("Nie można zwolnić pracownika, który zarządza jakimś projektem!");
+      }
     } catch (error) {}
   };
 

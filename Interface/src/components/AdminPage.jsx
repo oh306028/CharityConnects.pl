@@ -46,7 +46,7 @@ const AdminPage = () => {
     <>
       <div className={styles.container}>
         <div className={styles.manageMenu}>
-          <h1 className="logoText">Admin page</h1>
+          <h1 className="logoText">Administrator organizacji</h1>
           <ul className={styles.menuOptions}>
             <li>
               <p className={styles.option} onClick={handleCreateOrgToggle}>
