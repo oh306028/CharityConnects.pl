@@ -10,6 +10,7 @@ const Login = () => {
     password: password,
   };
 
+  const [notFound, setNotFound] = useState("");
   const [error, setError] = useState({});
 
   const handleLogin = async (e) => {
@@ -33,6 +34,9 @@ const Login = () => {
           localStorage.setItem("jwtToken", await response.text());
           navigate("/Home");
         }
+        if (response.status == 404) {
+          setNotFound("Błędny email lub hasło");
+        }
       } catch (error) {
         console.log(error);
       }
@@ -48,6 +52,7 @@ const Login = () => {
   };
 
   const validateInputs = () => {
+    setNotFound("");
     let isValid = true;
     const newError = {
       email: "",
@@ -99,6 +104,7 @@ const Login = () => {
                 {error.password && (
                   <span className="error">{error.password}</span>
                 )}
+                {notFound && <span className="error">{notFound}</span>}
               </div>
               <div>
                 <NavLink className="loginLink" to="/register">
