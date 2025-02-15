@@ -2,6 +2,7 @@
 using API.Exceptions;
 using API.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services
@@ -11,6 +12,7 @@ namespace API.Services
         Task Apply(int projectId, IFormFile file);
         Task<IEnumerable<ApplicationDto>> GetApplications(int projectId);
         Task Deny(int projectId);
+        (byte[] FileData, string ContentType, string FileName) GetFile(int applicationId);
     }
 
     public class ApplicationService : IApplicationService
@@ -43,19 +45,18 @@ namespace API.Services
                 throw new NotFoundException("Project not found");
 
 
-            string fileContent;
-            using (var reader = new StreamReader(file.OpenReadStream()))
-            {
-                fileContent = await reader.ReadToEndAsync();
-            }
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            var fileData = memoryStream.ToArray();
 
             var application = new Application()
             {
-                Description = fileContent,
+                FileName = file.FileName,
+                ContentType = file.ContentType,
+                FileData = fileData,
                 Beneficiary = beneficiary,
                 CharityProject = project,
                 IsAccepted = false
-                
             };
 
 
@@ -85,6 +86,16 @@ namespace API.Services
             return result;
 
 
+        }
+
+        public (byte[] FileData, string ContentType, string FileName) GetFile(int applicationId)
+        {
+            var application = _dbContext.Applications.FirstOrDefault(a => a.Id == applicationId);
+
+            if (application == null || application.FileData == null)
+                throw new NotFoundException("File not found");
+
+            return (application.FileData, application.ContentType, application.FileName);
         }
 
 

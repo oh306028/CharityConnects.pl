@@ -41,5 +41,13 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpGet("download/{applicationId}")]
+        public IActionResult DownloadFile(int applicationId)
+        {
+            var fileData = _applicationService.GetFile(applicationId);
+
+            return File(fileData.FileData, fileData.ContentType, fileData.FileName);
+        }
+
     }
 }
