@@ -1,0 +1,40 @@
+.parent{
+    min-height: 100vh;
+    background-color: var(--bs-tertiary-color);
+    padding:0;
+}
+.info{
+    max-width: 60%;
+    color: var(--bs-secondary-color);
+    font-size: 20px;
+}
+.info p{
+    text-align: center;
+}
+.steps{
+    max-width: 60%;
+    color: var(--bs-secondary-color);
+    font-size: 20px;
+}
+.guziki{
+    max-width: 60%;
+    background-color: transparent;
+}
+.guzik{
+    min-width: 20%;
+    min-height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.stopka{
+    background-color: var(--bs-body-color);
+}
+.guzikpowrotu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

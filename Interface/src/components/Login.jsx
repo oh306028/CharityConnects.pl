@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import "../styles/Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -86,17 +86,21 @@ const Login = () => {
         </div>
         <div className="right-container">
           <div className="form-container">
-            <form>
-              <div className="inputGroup">
+            <form className="formularz">
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">Adres e-mail</label>
                 <input
+                  className="form-control" id="exampleInputEmail1"
                   onChange={handleEmailChange}
                   type="text"
                   placeholder="Email . . ."
                 ></input>
                 {error.email && <span className="error">{error.email}</span>}
               </div>
-              <div className="inputGroup">
+              <div className="mb-3">
+                <label for="exampleInputPassword1" className="form-label">Hasło</label>
                 <input
+                className="form-control" id="exampleInputPassword1"
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder="Hasło . . ."
@@ -107,13 +111,13 @@ const Login = () => {
                 {notFound && <span className="error">{notFound}</span>}
               </div>
               <div>
-                <NavLink className="loginLink" to="/register">
+                <NavLink className="loginLink"  to="/register">
                   <p>Nie masz konta?</p>
                 </NavLink>
               </div>
               <div className="buttonDiv">
-                <button
-                  className="registerButton"
+                <button id="loguj"
+                  className="btn btn-primary"
                   onClick={handleLogin}
                   type="submit"
                 >

@@ -1,3 +1,89 @@
 .formInputs {
-  font-size: 25px;
+  font-size: 20px;
+}
+.container{
+  margin:0;
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: var(--bs-secondary-color);
+  display:flex;
+  flex-direction: column;
+}
+.left-container{
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.logoText{
+  margin:0;
+} 
+#zalsie {
+  margin: 0 0 2px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(209, 205, 199); /* jasny kolor tekstu */
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.right-container {
+  padding: 24px;
+  min-width: 25%;
+  max-width: 30%;
+  border-radius: 8px;
+}
+.form-container{
+  border: 0px;
+  padding: 0px;
+  background-color: transparent;
+}
+.form-label{
+  color:var(--bs-body-bg);
+}
+.form-control {
+  background-color: var(--bs-secondary-color) !important; /* Ciemne tło */
+  color: var(--bs-body-bg) !important; /* Kolor tekstu */
+  border: 1px solid var(--bs-border-color) !important; /* Zachowanie stylu ramki */
+}
+
+.form-control:focus {
+  background-color: var(--bs-secondary-color) !important; /* Tło nie zmienia koloru */
+  color: var(--bs-body-bg) !important;
+  border-color: var(--bs-border-color) !important; /* Opcjonalnie, jeśli chcesz kontrolować kolor obramowania */
+  box-shadow: none !important; /* Usuwa efekt podświetlenia Bootstrap */
+}
+
+/* Styl dla placeholdera */
+.form-control::placeholder {
+  color: var(--bs-body-bg); /* Taki sam jak form-label */
+  opacity: 0.75; /* Opcjonalnie, jeśli chcesz nieco przyciemnić */
+}
+
+/* Styl dla inputa po kliknięciu */
+.form-control:focus::placeholder {
+  color: var(--bs-body-bg); /* Zachowanie koloru */
+}
+.buttonDiv {
+  margin-top: 16px;
+}
+
+.btn-primary {
+
+  border: none !important;
+  padding: 8px 0 !important;
+  font-weight: 500;
+}
+#loguj{
+  width: 100%;
+}
+.btn-primary:hover {
+  background-color: rgb(0, 82, 204) !important;
+}
+
+.error {
+  color: rgb(248, 113, 113);
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
 }
