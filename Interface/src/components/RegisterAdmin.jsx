@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import "../styles/Register.css";
 const RegisterAdmin = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -118,88 +119,92 @@ const RegisterAdmin = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="left-container">
-          <h2 className="logoText">
-            Zostań administratorem organizacji pomocowej
-          </h2>
+<div className="container">
+  <div className="left-container">
+    <h2 className="logoText">Zostań administratorem organizacji pomocowej</h2>
+  </div>
+  <div className="right-container">
+    <div className="form-container">
+      <form className="formularz">
+        <div className="mb-3">
+          <label htmlFor="firstName" className="form-label">Imię</label>
+          <input
+            className="form-control"
+            id="firstName"
+            onChange={handleFirstNameChange}
+            type="text"
+            placeholder="Imię . . ."
+          />
+          {error.firstName && <span className="error">{error.firstName}</span>}
         </div>
-        <div className="right-container">
-          <div className="form-container">
-            <form>
-              <div className="row">
-                <div className="inputGroup">
-                  <input
-                    onChange={handleFirstNameChange}
-                    type="text"
-                    placeholder="Imię . . ."
-                  ></input>
-                  {error.firstName && (
-                    <span className="error">{error.firstName}</span>
-                  )}
-                </div>
-                <div className="inputGroup">
-                  <input
-                    onChange={handleLastNameChange}
-                    type="text"
-                    placeholder="Nazwisko . . ."
-                  ></input>
-                  {error.lastName && (
-                    <span className="error">{error.lastName}</span>
-                  )}
-                </div>
-              </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <input
-                    onChange={handleEmailChange}
-                    type="text"
-                    placeholder="Email . . ."
-                  ></input>
-                  {error.email && <span className="error">{error.email}</span>}
-                </div>
-                <div className="inputGroup">
-                  <input
-                    onChange={handlePasswordChange}
-                    type="password"
-                    placeholder="Hasło . . ."
-                  ></input>
-                  {error.password && (
-                    <span className="error">{error.password}</span>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label htmlFor="date">Data urodzenia: </label>
-                <input
-                  onChange={handleDateChange}
-                  id="id"
-                  type="date"
-                  value={selectedDate}
-                ></input>
-                {error.dateOfBirth && (
-                  <span className="error">{error.dateOfBirth}</span>
-                )}
-              </div>
 
-              <div>
-                <NavLink to="/login" className="loginLink">
-                  <p>Masz konto?</p>
-                </NavLink>
-              </div>
-              <div className="buttonDiv">
-                <button
-                  className="registerButton"
-                  onClick={handleRegister}
-                  type="submit"
-                >
-                  Zarejestruj
-                </button>
-              </div>
-            </form>
-          </div>
+        <div className="mb-3">
+          <label htmlFor="lastName" className="form-label">Nazwisko</label>
+          <input
+            className="form-control"
+            id="lastName"
+            onChange={handleLastNameChange}
+            type="text"
+            placeholder="Nazwisko . . ."
+          />
+          {error.lastName && <span className="error">{error.lastName}</span>}
         </div>
-      </div>
+
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Adres e-mail</label>
+          <input
+            className="form-control"
+            id="email"
+            onChange={handleEmailChange}
+            type="text"
+            placeholder="Email . . ."
+          />
+          {error.email && <span className="error">{error.email}</span>}
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Hasło</label>
+          <input
+            className="form-control"
+            id="password"
+            onChange={handlePasswordChange}
+            type="password"
+            placeholder="Hasło . . ."
+          />
+          {error.password && <span className="error">{error.password}</span>}
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label">Data urodzenia</label>
+          <input
+            className="form-control"
+            id="date"
+            type="date"
+            onChange={handleDateChange}
+            value={selectedDate}
+          />
+          {error.dateOfBirth && <span className="error">{error.dateOfBirth}</span>}
+        </div>
+
+        <div>
+          <NavLink className="loginLink" to="/login">
+            <p>Masz konto?</p>
+          </NavLink>
+        </div>
+
+        <div className="buttonDiv">
+          <button id="zarejestruj"
+            className="btn btn-primary"
+            onClick={handleRegister}
+            type="submit"
+          >
+            Zarejestruj
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     </>
   );
 };

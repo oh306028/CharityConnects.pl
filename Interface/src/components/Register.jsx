@@ -124,66 +124,68 @@ const Register = () => {
           <h1 className="logoText">CharityConnects.pl</h1>
         </div>
         <div className="right-container">
-          <div className="form-container">
-            <form>
-              <div className="row">
-                <div className="inputGroup">
-                  <input
-                    onChange={handleFirstNameChange}
-                    type="text"
-                    placeholder="Imię . . ."
-                  ></input>
-                  {error.firstName && (
-                    <span className="error">{error.firstName}</span>
-                  )}
-                </div>
-                <div className="inputGroup">
-                  <input
-                    onChange={handleLastNameChange}
-                    type="text"
-                    placeholder="Nazwisko . . ."
-                  ></input>
-                  {error.lastName && (
-                    <span className="error">{error.lastName}</span>
-                  )}
-                </div>
-              </div>
-              <div className="row">
-                <div className="inputGroup">
-                  <input
-                    onChange={handleEmailChange}
-                    type="text"
-                    placeholder="Email . . ."
-                  ></input>
-                  {error.email && <span className="error">{error.email}</span>}
-                </div>
-                <div className="inputGroup">
-                  <input
-                    onChange={handlePasswordChange}
-                    type="password"
-                    placeholder="Hasło . . ."
-                  ></input>
-                  {error.password && (
-                    <span className="error">{error.password}</span>
-                  )}
-                </div>
-              </div>
-              <div>
-                <label htmlFor="date">Data urodzenia: </label>
-                <input
-                  onChange={handleDateChange}
-                  id="id"
-                  type="date"
-                  value={selectedDate}
-                ></input>
-                {error.dateOfBirth && (
-                  <span className="error">{error.dateOfBirth}</span>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="Donor">Darczyńca</label>
-                <input
+      <div className="form-container">
+        <form className="formularz">
+          <div className="mb-3">
+            <label htmlFor="firstName" className="form-label">Imię</label>
+            <input
+              className="form-control"
+              id="firstName"
+              onChange={handleFirstNameChange}
+              type="text"
+              placeholder="Imię . . ."
+            />
+            {error.firstName && <span className="error">{error.firstName}</span>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="lastName" className="form-label">Nazwisko</label>
+            <input
+              className="form-control"
+              id="lastName"
+              onChange={handleLastNameChange}
+              type="text"
+              placeholder="Nazwisko . . ."
+            />
+            {error.lastName && <span className="error">{error.lastName}</span>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Adres e-mail</label>
+            <input
+              className="form-control"
+              id="email"
+              onChange={handleEmailChange}
+              type="text"
+              placeholder="Email . . ."
+            />
+            {error.email && <span className="error">{error.email}</span>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Hasło</label>
+            <input
+              className="form-control"
+              id="password"
+              onChange={handlePasswordChange}
+              type="password"
+              placeholder="Hasło . . ."
+            />
+            {error.password && <span className="error">{error.password}</span>}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="date" className="form-label">Data urodzenia</label>
+            <input
+              className="form-control"
+              id="date"
+              type="date"
+              onChange={handleDateChange}
+              value={selectedDate}
+            />
+            {error.dateOfBirth && <span className="error">{error.dateOfBirth}</span>}
+          </div>
+          <div className="roles">
+            <label className="form-label">Rola</label>
+            <div className="insideRoles d-flex align-items-center gap-3">
+              <div className="form-check">
+                <input className = "form-check-input" 
                   type="radio"
                   id="Donor"
                   name="roles"
@@ -191,9 +193,10 @@ const Register = () => {
                   checked={role === "Donor"}
                   onChange={handleRoleChange}
                 />
-
-                <label htmlFor="Beneficiary">Beneficjent</label>
-                <input
+                <label className="form-check-label" htmlFor="Donor">Darczyńca</label>
+              </div>
+              <div className="form-check">
+                <input className = "form-check-input"
                   type="radio"
                   id="Beneficiary"
                   name="roles"
@@ -201,24 +204,27 @@ const Register = () => {
                   checked={role === "Beneficiary"}
                   onChange={handleRoleChange}
                 />
+                <label className="form-check-label" htmlFor="Beneficiary">Beneficjent</label>
               </div>
-              <div>
-                <NavLink to="/login" className="loginLink">
-                  <p>Masz konto?</p>
-                </NavLink>
-              </div>
-              <div className="buttonDiv">
-                <button
-                  className="registerButton"
-                  onClick={handleRegister}
-                  type="submit"
-                >
-                  Zarejestruj
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
+          <div>
+            <NavLink className="loginLink" to="/login">
+              <p>Masz konto?</p>
+            </NavLink>
+          </div>
+          <div className="buttonDiv">
+            <button id="zarejestruj"
+              className="btn btn-primary"
+              onClick={handleRegister}
+              type="submit"
+            >
+              Zarejestruj
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
       </div>
     </>
   );

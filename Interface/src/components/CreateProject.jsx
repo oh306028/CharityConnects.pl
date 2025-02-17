@@ -80,57 +80,73 @@ const CreateProject = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.leftContainer}>
-          <h1 className="logoText">CharityConnects.pl</h1>
-        </div>
-        <div className={styles.rightContainer}>
-          <div className={styles.inputContainer}>
-            <form className={styles.form}>
-              <div className={styles.name}>
-                <input
-                  onChange={handleNameChange}
-                  type="text"
-                  placeholder="Nazwa projektu . . ."
-                ></input>
-              </div>
-              {error.name && <span className="error">{error.name}</span>}
-              <div className={styles.description}>
-                <textarea
-                  onChange={handleDescriptionChange}
-                  placeholder="Opis projektu . . ."
-                ></textarea>
-              </div>
-              {error.description && (
-                <span className="error">{error.description}</span>
-              )}
-              <div>
-                <label htmlFor="start">Data rozpoczęcia</label>
-                <input
-                  id="start"
-                  onChange={handleStartDateChange}
-                  type="date"
-                  value={startDate}
-                ></input>
-              </div>
-              <div>
-                <label htmlFor="end">Data zakończenia</label>
-                <input
-                  id="end"
-                  onChange={handleEndDateChange}
-                  type="date"
-                  value={endDate}
-                ></input>
-              </div>
+        <div className={styles.container}>
+          <div className={styles.leftContainer}>
+            <h1 className="logoText">CharityConnects.pl</h1>
+          </div>
+          <div className={styles.rightContainer}>
+          <div className="right-container">
+            <div className="form-container">
+              <form className="formularz">
+                <div className="mb-3">
+                  <label htmlFor="projectName" className="form-label">Nazwa projektu</label>
+                  <input
+                    className="form-control"
+                    id="projectName"
+                    onChange={handleNameChange}
+                    type="text"
+                    placeholder="Nazwa projektu . . ."
+                  />
+                  {error.name && <span className="error">{error.name}</span>}
+                </div>
 
-              <button onClick={handleCreate} type="submit">
-                Stwórz
-              </button>
-            </form>
-            <a href="/Home">Powrót</a>
+                <div className="mb-3">
+                  <label htmlFor="description" className="form-label">Opis projektu</label>
+                  <textarea
+                    className="form-control"
+                    id="description"
+                    onChange={handleDescriptionChange}
+                    placeholder="Opis projektu . . ."
+                  />
+                  {error.description && <span className="error">{error.description}</span>}
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="start" className="form-label">Data rozpoczęcia</label>
+                  <input
+                    className="form-control"
+                    id="start"
+                    onChange={handleStartDateChange}
+                    type="date"
+                    value={startDate}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="end" className="form-label">Data zakończenia</label>
+                  <input
+                    className="form-control"
+                    id="end"
+                    onChange={handleEndDateChange}
+                    type="date"
+                    value={endDate}
+                  />
+                </div>
+
+                <div className="buttonDiv">
+                  <button className={`btn btn-primary ${styles.stworz}`} onClick={handleCreate} type="submit">
+                    Stwórz
+                  </button>
+                </div>
+              </form>
+
+              <div>
+                <a className={`btn btn-primary ${styles.powrot}`} href="/Home">Powrót</a>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
-      </div>
     </>
   );
 };

@@ -1,27 +1,18 @@
+import "../styles/AboutUs.css";
 const AboutUs = () => {
   return (
     <>
-      <div>
-        <a href="/login">Pracownicy</a>
-        <a href="/organizations">Organizacje</a>
+      <div class="header container-fluid"
+      >
+        <a class="navbar-brand" href="#">CharityConnects</a>
+        <a href="/login" class="btn btn-primary">Pracownicy</a>
+        <a href="/organizations" class="btn btn-primary">Organizacje</a>
       </div>
-      <div
-        style={{
-          textAlign: "center",
-          padding: "20px",
-          fontFamily: "Arial, sans-serif",
-        }}
+      <div class="content container-fluid"
       >
         <h1 className="logoText">CharityConnects.pl</h1>
 
-        <p
-          style={{
-            fontSize: "1.2rem",
-            lineHeight: "1.8",
-            color: "#333",
-            margin: "20px auto",
-            maxWidth: "800px",
-          }}
+        <p class="firstText"
         >
           Witaj na platformie <strong>CharityConnects.pl</strong> – miejscu,
           które łączy potrzebujących z darczyńcami. Nasza misja to tworzenie
@@ -29,25 +20,13 @@ const AboutUs = () => {
           pomagać. Razem możemy zmieniać życie i budować lepszą przyszłość.
         </p>
 
-        <section
-          style={{ margin: "40px auto", maxWidth: "800px", textAlign: "left" }}
+        <section class="sectionOne" 
         >
           <h2
-            style={{
-              fontSize: "1.8rem",
-              color: "white",
-              marginBottom: "10px",
-            }}
           >
             Jak działamy?
           </h2>
           <ul
-            style={{
-              fontSize: "1rem",
-              lineHeight: "1.8",
-              color: "#333",
-              paddingLeft: "20px",
-            }}
           >
             <li>
               Organizacje charytatywne tworzą projekty pomocowe w naszym
@@ -68,25 +47,14 @@ const AboutUs = () => {
           </ul>
         </section>
 
-        <section
-          style={{ margin: "40px auto", maxWidth: "800px", textAlign: "left" }}
+        <section class="sectionOne" id="secondSection"
+          
         >
           <h2
-            style={{
-              fontSize: "1.8rem",
-              color: "white",
-              marginBottom: "10px",
-            }}
           >
             Dlaczego warto dołączyć?
           </h2>
           <ul
-            style={{
-              fontSize: "1rem",
-              lineHeight: "1.8",
-              color: "#333",
-              paddingLeft: "20px",
-            }}
           >
             <li>Masz możliwość realnego wpływu na życie innych.</li>
             <li>
@@ -99,27 +67,14 @@ const AboutUs = () => {
             </li>
           </ul>
         </section>
-
-        <div style={{ marginTop: "40px" }}>
-          <a
+      </div>
+      <div className="botDiv container-fluid">
+          <a className="btn btn-primary" id="dolacz"
             href="/register"
-            style={{
-              display: "inline-block",
-              background: "#007BFF",
-              color: "white",
-              padding: "15px 30px",
-              fontSize: "1rem",
-              textDecoration: "none",
-              borderRadius: "5px",
-              transition: "background-color 0.3s ease",
-            }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#007BFF")}
           >
             Dołącz do nas
           </a>
         </div>
-      </div>
     </>
   );
 };

@@ -45,38 +45,41 @@ const EmployeePage = () => {
 
   return (
     <>
-      <p onClick={handleLogout}>Wyloguj</p>
-      <div className={styles.container}>
-        <div className={styles.leftContainer}>
-          <h1 className="logoText">CharityConnects.pl</h1>
-
-          <section>
-            CharityConnects.pl to idealny serwis, który łączy beneficjentów i
-            darczyńców poprzez organizacje charytatywne. Dzięki naszej
-            platformie masz możliwość realnego wpływu na życie ludzi, którzy
-            najbardziej tego potrzebują. Jako pracownik, możesz współtworzyć
-            rozwiązania, które ułatwiają proces wsparcia, budują zaufanie oraz
-            usprawniają komunikację między wszystkimi zaangażowanymi stronami.
-            Dołącz do naszej misji i pomóż nam rozwijać narzędzia, które
-            zmieniają świat na lepsze – razem możemy więcej!
-          </section>
-          <button onClick={navigateToCreate} className={styles.button}>
-            Utwórz nowy projekt
-          </button>
-        </div>
-
-        <div className={styles.rightContainer}>
-          <ul>
-            {projects.map((p) => (
-              <li key={p.id}>
-                <ProjectDetails
-                  project={p}
-                  token={token}
-                  fetchAfterManaged={fetchData}
-                />
-              </li>
-            ))}
-          </ul>
+      <div className={styles.container1}>
+        <div className={styles.navbar}>
+          <p className={styles.akap1}>CharityConnects</p>
+          <p className={`btn btn-primary ${styles.logout}`} onClick={handleLogout}>Wyloguj</p>
+        </div>  
+        <div className={styles.container2}>
+          <div className={styles.leftContainer}>
+            <h1 className={styles.logoText}>CharityConnects.pl</h1>
+            <div className={styles.tekst}>
+              CharityConnects.pl to idealny serwis, który łączy beneficjentów i
+              darczyńców poprzez organizacje charytatywne. Dzięki naszej
+              platformie masz możliwość realnego wpływu na życie ludzi, którzy
+              najbardziej tego potrzebują. Jako pracownik, możesz współtworzyć
+              rozwiązania, które ułatwiają proces wsparcia, budują zaufanie oraz
+              usprawniają komunikację między wszystkimi zaangażowanymi stronami.
+              Dołącz do naszej misji i pomóż nam rozwijać narzędzia, które
+              zmieniają świat na lepsze – razem możemy więcej!
+            </div>
+            <button onClick={navigateToCreate} className={`btn btn-primary ${styles.button1}`}>
+              Utwórz nowy projekt
+            </button>
+          </div>
+          <div className={styles.rightContainer}>
+            <ul>
+              {projects.map((p) => (
+                <li key={p.id}>
+                  <ProjectDetails
+                    project={p}
+                    token={token}
+                    fetchAfterManaged={fetchData}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </>

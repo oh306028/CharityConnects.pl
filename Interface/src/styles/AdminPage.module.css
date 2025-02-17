@@ -1,37 +1,88 @@
 .container {
-  display: flex;
+  background-color: var(--bs-secondary-color) !important;
   width: 100vw;
+  padding: 0;
+  display: flex;
+}
+
+.manageMenu {
+  background-color: transparent !important;
+  width: 35%; /* Zmniejszenie szerokości menu, aby była tylko jedna kolumna */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height:100vh;
+  padding: 0;
+}
+
+.logoText {
+  width: 100%;
+  font-size: 50px;
+  background-color: var(--bs-body-color);
+  color: aliceblue;
+  text-align: center;
+  margin: 0;
+
+  padding: 10px 0;
+}
+
+.menuOptions {
+  margin-top: 50px; /* Odstęp od nagłówka */
+  display: flex;
+  flex-direction: column; /* Przyciski ustawione jeden pod drugim */
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 800px;
+}
+
+.optiondiv1 {
+
+  min-height: 30px;
+  min-width: 100%;
+  margin-bottom: 20px; /* Odstęp między przyciskami */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20%;
+}
+.optiondiv2 {
+  position: relative;
+  top:50px;
+  min-height: 30px;
+  min-width: 100%;
+  margin-bottom: 20px; /* Odstęp między przyciskami */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20%;
 }
 
 .option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 22px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif, "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   color: rgb(255, 255, 255);
+  height: 100%;
+  width: 50%;
+  cursor: pointer;
 }
 
 .option:hover {
   color: azure;
-  cursor: pointer;
-}
-.menuOptions {
-  margin-top: 200px;
-  list-style: none;
-}
-
-.manageMenu {
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  align-items: center;
 }
 
 .employeesList {
   display: flex;
   flex-direction: column;
-  width: 65%;
-  background-color: white;
+  width: 65%; /* Szerokość drugiej kolumny */
+  background-color: var(--bs-body-bg);
   height: 100vh;
+  padding: 0px;
 }
 
 .employeesList h2 {
@@ -42,20 +93,23 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  align-items: left;
   gap: 5px;
   margin: 0;
   padding: 10px 40px;
-  margin-left: 60px;
 }
 
 .employees li {
   min-width: 250px;
   height: 125px;
 }
-
-.employees li,
-h1 {
+.header2{
+  width: 100%;
+  background-color: var(--bs-body-color);
+  color: aliceblue;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
   margin: 0;
-  padding: 0;
+
+  padding: 10px 0;
 }
