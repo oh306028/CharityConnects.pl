@@ -39,6 +39,7 @@ body {
     text-align: center;
     display: flex;
     padding: 20px;
+    color:black;
     font-family: Arial, sans-serif;
     flex-direction: column;
     align-items: center; /* Centruje elementy w poziomie */

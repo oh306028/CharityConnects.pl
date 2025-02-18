@@ -47,6 +47,7 @@
   align-items: center;
 }
 .leftContainer {
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,12 +66,16 @@
   min-height: 70px;
 }
 .rightContainer {
-  margin-top: 15px;
+ 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-grow: 1;
-  max-height: 90vh;
-  overflow: scroll;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.rightContainer input{
+  background-color: transparent;
+  color: black;
 }
