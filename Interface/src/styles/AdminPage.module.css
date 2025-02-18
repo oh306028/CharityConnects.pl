@@ -113,3 +113,20 @@
 
   padding: 10px 0;
 }
+input{
+  background-color: aliceblue;
+  width: auto;
+  color:gray;
+}
+input[type='date']{
+  color:gray;
+  width: 100%;
+  
+}
+h1{
+  margin-left: 0 !important;
+}
+form{
+  padding-left: 20px;
+  padding-right: 20px;
+}

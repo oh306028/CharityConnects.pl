@@ -3,8 +3,15 @@
   flex-direction: column;
   align-items: center;
   margin: 20px 0px;
-}
 
+}
+.tile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .organization {
   margin: 0;
   margin-top: 4px;
@@ -52,18 +59,49 @@ p {
   border-radius: 4px;
   text-align: center;
 }
+.gAplikuj{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;  /* Dopasowuje szerokość do treści */
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 150px !important;            /* Automatyczna szerokość */
+  padding-right:16px !important;
+  padding-left:16px !important;        /* Dopasowane odstępy (możesz zmienić) */
+  white-space: nowrap;    /* Zapobiega zawijaniu tekstu */
+}
 
 button {
-  width: 40%;
+  width: 50%;
+  margin: 7px 0px;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color: #0d6efd; /* Kolor primary */
+  border: 1px solid #0d6efd;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: aliceblue;
+}
+input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
   margin: 7px 0px;
   font-size: 16px;
   font-family: "Courier New", Courier, monospace;
   padding: 4px;
-  background-color: rgb(255, 255, 255);
+  background-color: #0d6efd; /* Kolor primary */
+  border: 1px solid #0d6efd;
   border-radius: 4px;
-  border: 0.5px solid black;
+  font-family: Arial, Helvetica, sans-serif;
+  color: aliceblue;
 }
-
 button:hover {
   cursor: pointer;
 }
