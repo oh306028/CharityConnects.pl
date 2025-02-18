@@ -4,13 +4,7 @@
   padding: 0px 40px;
   font-size: 18px;
   border: 1px solid rgb(0, 0, 0);
-  background: rgb(134, 157, 200);
-  background: linear-gradient(
-    90deg,
-    rgba(86, 122, 190, 0.971) 0%,
-    rgba(169, 191, 194, 1) 70%,
-    rgba(93, 118, 134, 0.996) 100%
-  );
+  background-color: var(--bs-body-color);
   font-family: Georgia, "Times New Roman", Times, serif;
   color: whitesmoke;
 }
@@ -18,12 +12,25 @@
 .navigationContainer {
   display: flex;
   justify-content: space-evenly;
+  background-color: var(--bs-body-color);
   gap: 40px;
 }
 
 .logo {
-  text-shadow: 4px 4px 5px rgba(0, 0, 0, 1);
+  margin:0;
   font-size: 22px;
+}
+.guzik0 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;  /* Dopasowuje szerokość do treści */
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 150px !important;            /* Automatyczna szerokość */
+  padding-right:16px !important;
+  padding-left:16px !important;        /* Dopasowane odstępy (możesz zmienić) */
+  white-space: nowrap;    /* Zapobiega zawijaniu tekstu */
 }
 
 .navigationContainer h4:hover {

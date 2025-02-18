@@ -9,17 +9,18 @@ const NavigationBar = () => {
   return (
     <>
       <div className={styles.navBar}>
-        <div>
-          <h3 className={styles.logo}>CharityConnects.pl</h3>
+        <div className={` ${styles.guzik0}`}>
+          <h3 className={styles.logo}>CharityConnects</h3>
         </div>
         <div className={styles.navigationContainer}>
-          <NavLink to="/Home">
-            <h4>Projekty</h4>
+          <NavLink className={`btn btn-primary ${styles.guzik0}`} to="/Home">
+            <h4 className={styles.logo}>Projekty</h4>
           </NavLink>
-
-          <h4>Profil</h4>
-          <NavLink to="/login" onClick={handleLogout}>
-            <h4>Wyloguj</h4>
+          <NavLink className={`btn btn-primary ${styles.guzik0}`} to="/#">
+          <h4 className={styles.logo}>Profil</h4>
+          </NavLink>
+          <NavLink className={`btn btn-primary ${styles.guzik0}`} to="/login" onClick={handleLogout}>
+            <h4 className={styles.logo}>Wyloguj</h4>
           </NavLink>
         </div>
       </div>
