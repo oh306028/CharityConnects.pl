@@ -13,3 +13,5 @@ Follow any additional instructions provided in the project to run the app locall
 Ensure that you have the .NET SDK installed on your machine.
 Install the required dependencies for the backend. (if it didnt download automatically, you will need to download nuget package for EF, Fluent Validation and AutoMapper)
 In the NuGet Package Manager Console, run the update-database command to update the database with the latest migrations.
+
+I was responsible for implementing the business logic backend api, and i was also creating the basisc of frontend. 
